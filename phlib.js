@@ -1,6 +1,4 @@
 
-module.exports = phlib
-
 module.exports.HTMLize=HTMLize
 
 /**
