@@ -1,6 +1,4 @@
 
-module.exports.HTMLize=HTMLize
-
 /**
  * Convert Fahrenheit / Celsius
  
@@ -104,7 +102,7 @@ const timeFromDate = date => date.toTimeString().slice(0, 8);
  * @returns {string} A string with ENTITY representations of < and >
  */
 //const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
-function HTMLize(str) {
+module.exports.HTMLize = function HTMLize(str) {
 	return str.replace(/<|>|&/g, function (matched) {
 		switch (matched) {
 			case '<':return '&lt;'; break
