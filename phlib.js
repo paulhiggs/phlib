@@ -42,7 +42,7 @@ module.exports.average = function (...args) {
 	toFixed(25.198726354, 6);       // 25.198726
  */
 module.exports.toFixed = function (n, fixed) {
-	returm ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
+	return ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 }
 
 
