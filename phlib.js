@@ -1,3 +1,8 @@
+
+module.exports = phlib
+
+module.exports.HTMLize=HTMLize
+
 /**
  * Convert Fahrenheit / Celsius
  
@@ -93,8 +98,21 @@ const timeFromDate = date => date.toTimeString().slice(0, 8);
 
 
 
-/**
- * Convert string characters into HTML entities
- 
+
+/** 
+ * convert characters in the string to HTML entities
+ *
+ * @param {string} str String that should be displayed in HTML
+ * @returns {string} A string with ENTITY representations of < and >
  */
-const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
+//const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
+function HTMLize(str) {
+	return str.replace(/<|>|&/g, function (matched) {
+		switch (matched) {
+			case '<':return '&lt;'; break
+			case '>':return '&gt;'; break
+			case '&':return '&amp;'; break
+		}
+	})
+}
+
