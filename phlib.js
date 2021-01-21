@@ -90,8 +90,9 @@ const isEven = num => num % 2 === 0;
 	console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0)));   // Result: "17:30:00"
 	console.log(timeFromDate(new Date()));   // Result: will log the current time
  */
-const timeFromDate = date => date.toTimeString().slice(0, 8);
-
+module.exports.timeFromDate = function (date) {
+	return date.toTimeString().slice(0, 8);
+}
 
 
 
@@ -102,7 +103,7 @@ const timeFromDate = date => date.toTimeString().slice(0, 8);
  * @returns {string} A string with ENTITY representations of < and >
  */
 //const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
-module.exports.HTMLize = function HTMLize(str) {
+module.exports.HTMLize = function (str) {
 	return str.replace(/<|>|&/g, function (matched) {
 		switch (matched) {
 			case '<':return '&lt;'; break
