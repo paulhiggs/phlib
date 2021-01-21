@@ -9,8 +9,12 @@
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-const celsiusToFahrenheit = (celsius) => celsius * 9/5 + 32;
-const fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
+module.exports.celsiusToFahrenheit = function (celsius) {
+	return celsius * 9/5 + 32;
+}
+module.exports.fahrenheitToCelsius = function(fahrenheit) {
+	return (fahrenheit - 32) * 5/9;
+}
 
 
 
@@ -20,7 +24,9 @@ const fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
 	// Examples
 	average(1, 2, 3, 4);	// Result: 2.5
  */
-const average = (...args) => args.reduce((a, b) => a + b) / args.length;
+module.exports.average = function (...args) {
+	return args.reduce((a, b) => a + b) / args.length;
+}
 
 
 
@@ -35,22 +41,26 @@ const average = (...args) => args.reduce((a, b) => a + b) / args.length;
 	toFixed(25.198726354, 5);       // 25.19872
 	toFixed(25.198726354, 6);       // 25.198726
  */
-const toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
-
+module.exports.toFixed = function (n, fixed) {
+	returm ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
+}
 
 
 /**
   generate a random boolean - 50/50 chance of true/false
  */
-const randomBoolean = () => Math.random() >= 0.5;
+module.exports.randomBoolean = function () {
+	return Math.random() >= 0.5;
+}
 
 
 
 /**
   generate a random coin toss - 50/50 chance of heads/tails
  */
-const coinToss = () => Math.random() >= 0.5 ? 'heads' : 'tails';
-
+module.exports.coinToss = function () {
+	return Math.random() >= 0.5 ? 'heads' : 'tails';
+}
 
 
 /**
@@ -60,7 +70,9 @@ const coinToss = () => Math.random() >= 0.5 ? 'heads' : 'tails';
 	console.log(isWeekday(new Date(2021, 0, 11)));  	// Result: true (Monday)
 	console.log(isWeekday(new Date(2021, 0, 10)));		// Result: false (Sunday)
  */
-const isWeekday = (date) => date.getDay() % 6 !== 0;
+module.exports.isWeekday = function (date) {
+	return date.getDay() % 6 !== 0;
+}
 
 
 
@@ -70,7 +82,10 @@ const isWeekday = (date) => date.getDay() % 6 !== 0;
 	// Example
 	reverse('hello world');      // Result: 'dlrow olleh'
  */
-const reverse = str => str.split('').reverse().join('');
+module.exports.reverse = function (str) {
+	return str.split('').reverse().join('');
+}
+
 
 
 /**
@@ -80,7 +95,9 @@ const reverse = str => str.split('').reverse().join('');
 	console.log(isEven(2));	// Result: true
 	console.log(isEven(3));	// Result: false
  */
-const isEven = num => num % 2 === 0;
+module.exports.isEven = function (num) {
+	return num % 2 === 0;
+}
 
 
 /**
