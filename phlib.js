@@ -133,7 +133,7 @@ module.exports.reverse = function (str) {
 module.exports.isEven = function (num) {
 	return num % 2 === 0;
 }
-
+ 
 
 /**
  * Get the time from a date
