@@ -1,4 +1,39 @@
 
+
+/*
+ * formatters
+ */
+//String.prototype.quote=function(using='"') {return using+this+using}
+//String.prototype.elementize=function() {return '<'+this+'>'}
+//String.prototype.attribute=function(elemName="") {return elemName+'@'+this}
+
+
+Object.assign(String.prototype, {
+	quote(using='"') {
+		return using+this+using
+	}
+});
+module.exports.quote = function (str) {
+	return str.quote()
+}
+
+Object.assign(String.prototype, {
+	elementize() {
+		return '<'+this+'>'
+	}
+});
+module.exports.elementize = function (str) {
+	return str.elementize()
+}
+Object.assign(String.prototype, {
+	attribute(elemName="") {
+		return elemName+'@'+this
+	}
+});
+module.exports.attribute = function (attr, elem="") {
+	return attr.attribute(elem)
+}
+
 /**
  * Convert Fahrenheit / Celsius
  
