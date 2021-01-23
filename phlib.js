@@ -186,3 +186,14 @@ module.exports.factorialOfNumber = function (number) {
        : number * factorialOfNumber(number-1);
 }
 
+
+/**
+ * sum the numbers in an array
+ 
+ // examples 
+ // sumOfNumbers(5,6,7,8,9,10); --> 45
+ // sumOfNumbers(...[1,2,3,4,5,6,7,8,9,10]); --> 50
+ */
+module.exports.sumOfNumbers = function (...array) {
+	return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
+}
