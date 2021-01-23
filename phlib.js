@@ -118,9 +118,14 @@ module.exports.isWeekday = function (date) {
 	reverse('hello world');      // Result: 'dlrow olleh'
  */
 module.exports.reverse = function (str) {
-	return str.split('').reverse().join('');
+	return str.reverse();
 }
-
+Object.assign(String.prototype, {
+	reverse() {
+		return this.split('').reverse().join('')
+		// const reverseString = string => [...string].reverse().join('');
+	}
+});
 
 
 /**
@@ -163,5 +168,21 @@ module.exports.HTMLize = function (str) {
 			case '&':return '&amp;'; break
 		}
 	})
+}
+
+/**
+ * calculate the factorial of a number
+	// example
+	// factorialOfNumber(4); --> 24
+	// factorialOfNumber(8); --> 40320
+ */
+module.exports.factorialOfNumber = function (number) {
+  return number < 0
+    ? (() => {
+	  throw new TypeError('No negative numbers please');
+      })()
+    : number <= 1
+       ? 1
+       : number * factorialOfNumber(number-1);
 }
 
