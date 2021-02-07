@@ -52,7 +52,6 @@ module.exports.fahrenheitToCelsius = function(fahrenheit) {
 }
 
 
-
 /**
  * Get average value of arguments
  
@@ -62,7 +61,6 @@ module.exports.fahrenheitToCelsius = function(fahrenheit) {
 module.exports.average = function (...args) {
 	return args.reduce((a, b) => a + b) / args.length;
 }
-
 
 
 /**
@@ -82,16 +80,31 @@ module.exports.toFixed = function (n, fixed) {
 
 
 /**
+ * generate a random number within a designated range
+ * 
+ * @param {Number} min - the lower bound for the random number
+ * @param {Number} max - the upper bound for the random number
+ * @returns {Number} a random number betwee min and max
+ */
+module.exports.randomNumberInRange = function (min, max) {
+	 Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+/**
   generate a random boolean - 50/50 chance of true/false
+  *
+  * @returns {Boolean} random true/false
  */
 module.exports.randomBoolean = function () {
 	return Math.random() >= 0.5;
 }
 
 
-
 /**
   generate a random coin toss - 50/50 chance of heads/tails
+ *
+ * @returns {String} random 'heads' or 'tails'
  */
 module.exports.coinToss = function () {
 	return Math.random() >= 0.5 ? 'heads' : 'tails';
@@ -100,22 +113,22 @@ module.exports.coinToss = function () {
 
 /**
  * Check if the provided day is a weekday
- 
-	// Examples
-	console.log(isWeekday(new Date(2021, 0, 11)));  	// Result: true (Monday)
-	console.log(isWeekday(new Date(2021, 0, 10)));		// Result: false (Sunday)
+ * @param {Date} date the date to check
+ * @returns {Boolean} true if the date is Monday-Friday else false
+ * @example console.log(isWeekday(new Date(2021, 0, 11)));  --> Result: true (Monday)
+ * @example console.log(isWeekday(new Date(2021, 0, 10)));	--> Result: false (Sunday)
  */
 module.exports.isWeekday = function (date) {
 	return date.getDay() % 6 !== 0;
 }
 
 
-
 /** 
  * Reverse a String
  
+ // const reverseString = string => [...string].reverse().join('');
 	// Example
-	reverse('hello world');      // Result: 'dlrow olleh'
+ * @example	reverse('hello world');  --> Result: 'dlrow olleh'
  */
 module.exports.reverse = function (str) {
 	return str.reverse();
@@ -123,7 +136,6 @@ module.exports.reverse = function (str) {
 Object.assign(String.prototype, {
 	reverse() {
 		return this.split('').reverse().join('')
-		// const reverseString = string => [...string].reverse().join('');
 	}
 });
 
@@ -151,6 +163,19 @@ module.exports.timeFromDate = function (date) {
 	return date.toTimeString().slice(0, 8);
 }
 
+
+/**
+ * Returns the number of days betweeen two dates
+ * @param {Date} dateA - the first date
+ * @param {Date} dateB the second date
+ * @returns {Integer} the number od calendar days between the two given dates
+ */
+module.exports.daysBetweenDates = function(dateA, dateB) {
+	const timeDifference = Math.abs(dateA.getTime() - dateB.getTime())
+	
+	// Seconds * hours * miliseconds
+	return Math.floor(timeDifference / (3600 * 24 * 1000))
+ }
 
 
 /** 
