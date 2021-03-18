@@ -186,11 +186,12 @@ module.exports.daysBetweenDates = function(dateA, dateB) {
  */
 //const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
 module.exports.HTMLize = function (str) {
-	return str.replace(/<|>|&/g, function (matched) {
+	return str.replace(/<|>|&|-/g, function (matched) {
 		switch (matched) {
 			case '<':return '&lt;'; break
 			case '>':return '&gt;'; break
 			case '&':return '&amp;'; break
+			case '-':return '&nbsp;'; break
 		}
 	})
 }
