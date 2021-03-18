@@ -191,7 +191,7 @@ module.exports.HTMLize = function (str) {
 			case '<':return '&lt;'; break
 			case '>':return '&gt;'; break
 			case '&':return '&amp;'; break
-			case '-':return '&nbsp;'; break
+			case '-':return '&#8209;'; break
 		}
 	})
 }
