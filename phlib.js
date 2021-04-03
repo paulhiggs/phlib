@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */
 
 /*
  * formatters
@@ -10,29 +10,29 @@
 
 Object.assign(String.prototype, {
 	quote(using='"') {
-		return using+this+using
+		return `${using}${this}${using}`;
 	}
 });
 module.exports.quote = function (str) {
-	return str.quote()
-}
+	return str.quote();
+};
 
 Object.assign(String.prototype, {
 	elementize() {
-		return '<'+this+'>'
+		return `<${this}>`;
 	}
 });
 module.exports.elementize = function (str) {
-	return str.elementize()
-}
+	return str.elementize();
+};
 Object.assign(String.prototype, {
 	attribute(elemName="") {
-		return elemName+'@'+this
+		return `${elemName}@${this}`;
 	}
 });
 module.exports.attribute = function (attr, elem="") {
-	return attr.attribute(elem)
-}
+	return attr.attribute(elem);
+};
 
 /**
  * Convert Fahrenheit / Celsius
@@ -46,10 +46,10 @@ module.exports.attribute = function (attr, elem="") {
  */
 module.exports.celsiusToFahrenheit = function (celsius) {
 	return celsius * 9/5 + 32;
-}
+};
 module.exports.fahrenheitToCelsius = function(fahrenheit) {
 	return (fahrenheit - 32) * 5/9;
-}
+};
 
 
 /**
@@ -60,7 +60,7 @@ module.exports.fahrenheitToCelsius = function(fahrenheit) {
  */
 module.exports.average = function (...args) {
 	return args.reduce((a, b) => a + b) / args.length;
-}
+};
 
 
 /**
@@ -76,7 +76,7 @@ module.exports.average = function (...args) {
  */
 module.exports.toFixed = function (n, fixed) {
 	return ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
-}
+};
 
 
 /**
@@ -87,8 +87,8 @@ module.exports.toFixed = function (n, fixed) {
  * @returns {Number} a random number betwee min and max
  */
 module.exports.randomNumberInRange = function (min, max) {
-	 Math.floor(Math.random() * (max - min + 1)) + min;
-}
+	 return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 
 /**
@@ -98,7 +98,7 @@ module.exports.randomNumberInRange = function (min, max) {
  */
 module.exports.randomBoolean = function () {
 	return Math.random() >= 0.5;
-}
+};
 
 
 /**
@@ -108,7 +108,7 @@ module.exports.randomBoolean = function () {
  */
 module.exports.coinToss = function () {
 	return Math.random() >= 0.5 ? 'heads' : 'tails';
-}
+};
 
 
 /**
@@ -120,7 +120,7 @@ module.exports.coinToss = function () {
  */
 module.exports.isWeekday = function (date) {
 	return date.getDay() % 6 !== 0;
-}
+};
 
 
 /** 
@@ -132,10 +132,10 @@ module.exports.isWeekday = function (date) {
  */
 module.exports.reverse = function (str) {
 	return str.reverse();
-}
+};
 Object.assign(String.prototype, {
 	reverse() {
-		return this.split('').reverse().join('')
+		return this.split('').reverse().join('');
 	}
 });
 
@@ -149,7 +149,7 @@ Object.assign(String.prototype, {
  */
 module.exports.isEven = function (num) {
 	return num % 2 === 0;
-}
+};
  
 
 /**
@@ -161,7 +161,7 @@ module.exports.isEven = function (num) {
  */
 module.exports.timeFromDate = function (date) {
 	return date.toTimeString().slice(0, 8);
-}
+};
 
 
 /**
@@ -171,11 +171,11 @@ module.exports.timeFromDate = function (date) {
  * @returns {Integer} the number od calendar days between the two given dates
  */
 module.exports.daysBetweenDates = function(dateA, dateB) {
-	const timeDifference = Math.abs(dateA.getTime() - dateB.getTime())
+	const timeDifference = Math.abs(dateA.getTime() - dateB.getTime());
 	
 	// Seconds * hours * miliseconds
-	return Math.floor(timeDifference / (3600 * 24 * 1000))
- }
+	return Math.floor(timeDifference / (3600 * 24 * 1000));
+};
 
 
 /** 
@@ -188,13 +188,13 @@ module.exports.daysBetweenDates = function(dateA, dateB) {
 module.exports.HTMLize = function (str) {
 	return str.replace(/<|>|&|\-/g, function (matched) {
 		switch (matched) {
-			case '<':return '&lt;'; break
-			case '>':return '&gt;'; break
-			case '&':return '&amp;'; break
-			case '-':return '&#8209;'; break
+			case '<':return '&lt;'; 
+			case '>':return '&gt;'; 
+			case '&':return '&amp;'; 
+			case '-':return '&#8209;'; 
 		}
-	})
-}
+	});
+};
 
 /**
  * calculate the factorial of a number
@@ -203,14 +203,11 @@ module.exports.HTMLize = function (str) {
 	// factorialOfNumber(8); --> 40320
  */
 module.exports.factorialOfNumber = function (number) {
-  return number < 0
-    ? (() => {
+  return number < 0 ? (() => {
 	  throw new TypeError('No negative numbers please');
-      })()
-    : number <= 1
-       ? 1
-       : number * factorialOfNumber(number-1);
-}
+      })() :
+    number <= 1 ? 1 : number * factorialOfNumber(number-1);
+};
 
 
 /**
@@ -222,4 +219,4 @@ module.exports.factorialOfNumber = function (number) {
  */
 module.exports.sumOfNumbers = function (...array) {
 	return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
-}
+};
