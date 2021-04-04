@@ -1,0 +1,15 @@
+{
+	"name": "phlib",
+	"description": "Pauls library ",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {},
+	"engines": {
+		"node": ">= 15.0.0",
+		"npm": ">= 7.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/paulhiggs/phlib"
+	}
+}
