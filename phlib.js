@@ -13,26 +13,22 @@ Object.assign(String.prototype, {
 		return `${using}${this}${using}`;
 	}
 });
-module.exports.quote = function (str) {
-	return str.quote();
-};
+module.exports.quote = (str) => str.quote();
 
 Object.assign(String.prototype, {
 	elementize() {
 		return `<${this}>`;
 	}
 });
-module.exports.elementize = function (str) {
-	return str.elementize();
-};
+module.exports.elementize = (str) => str.elementize();
+
 Object.assign(String.prototype, {
 	attribute(elemName="") {
 		return `${elemName}@${this}`;
 	}
 });
-module.exports.attribute = function (attr, elem="") {
-	return attr.attribute(elem);
-};
+module.exports.attribute = (attr, elem="") => attr.attribute(elem);
+
 
 /**
  * Convert Fahrenheit / Celsius
@@ -44,12 +40,8 @@ module.exports.attribute = function (attr, elem="") {
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-module.exports.celsiusToFahrenheit = function (celsius) {
-	return celsius * 9/5 + 32;
-};
-module.exports.fahrenheitToCelsius = function(fahrenheit) {
-	return (fahrenheit - 32) * 5/9;
-};
+module.exports.celsiusToFahrenheit = (celsius) => celsius * 9/5 + 32;
+module.exports.fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
 
 
 /**
@@ -58,9 +50,7 @@ module.exports.fahrenheitToCelsius = function(fahrenheit) {
 	// Examples
 	average(1, 2, 3, 4);	// Result: 2.5
  */
-module.exports.average = function (...args) {
-	return args.reduce((a, b) => a + b) / args.length;
-};
+module.exports.average = (...args) => args.reduce((a, b) => a + b) / args.length;
 
 
 /**
@@ -74,9 +64,7 @@ module.exports.average = function (...args) {
 	toFixed(25.198726354, 5);       // 25.19872
 	toFixed(25.198726354, 6);       // 25.198726
  */
-module.exports.toFixed = function (n, fixed) {
-	return ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
-};
+module.exports.toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 
 
 /**
@@ -86,9 +74,7 @@ module.exports.toFixed = function (n, fixed) {
  * @param {Number} max - the upper bound for the random number
  * @returns {Number} a random number betwee min and max
  */
-module.exports.randomNumberInRange = function (min, max) {
-	 return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+module.exports.randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
 /**
@@ -96,9 +82,7 @@ module.exports.randomNumberInRange = function (min, max) {
   *
   * @returns {Boolean} random true/false
  */
-module.exports.randomBoolean = function () {
-	return Math.random() >= 0.5;
-};
+module.exports.randomBoolean = () => Math.random() >= 0.5;
 
 
 /**
@@ -106,9 +90,7 @@ module.exports.randomBoolean = function () {
  *
  * @returns {String} random 'heads' or 'tails'
  */
-module.exports.coinToss = function () {
-	return Math.random() >= 0.5 ? 'heads' : 'tails';
-};
+module.exports.coinToss =  () =>  Math.random() >= 0.5 ? 'heads' : 'tails';
 
 
 /**
@@ -118,9 +100,7 @@ module.exports.coinToss = function () {
  * @example console.log(isWeekday(new Date(2021, 0, 11)));  --> Result: true (Monday)
  * @example console.log(isWeekday(new Date(2021, 0, 10)));	--> Result: false (Sunday)
  */
-module.exports.isWeekday = function (date) {
-	return date.getDay() % 6 !== 0;
-};
+module.exports.isWeekday = (date) => date.getDay() % 6 !== 0;
 
 
 /** 
@@ -130,14 +110,12 @@ module.exports.isWeekday = function (date) {
 	// Example
  * @example	reverse('hello world');  --> Result: 'dlrow olleh'
  */
-module.exports.reverse = function (str) {
-	return str.reverse();
-};
 Object.assign(String.prototype, {
 	reverse() {
 		return this.split('').reverse().join('');
 	}
 });
+module.exports.reverse = (str) => str.reverse();
 
 
 /**
@@ -147,9 +125,7 @@ Object.assign(String.prototype, {
 	console.log(isEven(2));	// Result: true
 	console.log(isEven(3));	// Result: false
  */
-module.exports.isEven = function (num) {
-	return num % 2 === 0;
-};
+module.exports.isEven = (num) => num % 2 === 0;
  
 
 /**
@@ -159,9 +135,7 @@ module.exports.isEven = function (num) {
 	console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0)));   // Result: "17:30:00"
 	console.log(timeFromDate(new Date()));   // Result: will log the current time
  */
-module.exports.timeFromDate = function (date) {
-	return date.toTimeString().slice(0, 8);
-};
+module.exports.timeFromDate = (date) => date.toTimeString().slice(0, 8);
 
 
 /**
@@ -170,12 +144,7 @@ module.exports.timeFromDate = function (date) {
  * @param {Date} dateB the second date
  * @returns {Integer} the number od calendar days between the two given dates
  */
-module.exports.daysBetweenDates = function(dateA, dateB) {
-	const timeDifference = Math.abs(dateA.getTime() - dateB.getTime());
-	
-	// Seconds * hours * miliseconds
-	return Math.floor(timeDifference / (3600 * 24 * 1000));
-};
+module.exports.daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000));
 
 
 /** 
@@ -217,6 +186,5 @@ module.exports.factorialOfNumber = function (number) {
  // sumOfNumbers(5,6,7,8,9,10); --> 45
  // sumOfNumbers(...[1,2,3,4,5,6,7,8,9,10]); --> 50
  */
-module.exports.sumOfNumbers = function (...array) {
-	return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
-};
+module.exports.sumOfNumbers =  (...array) => [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
+
