@@ -12,21 +12,21 @@ Object.assign(String.prototype, {
 		return `${using}${this}${using}`;
 	}
 });
-module.exports.quote = (str) => str.quote();
+export function quote(str) { return str.quote(); }
 
 Object.assign(String.prototype, {
 	elementize() {
 		return `<${this}>`;
 	}
 });
-module.exports.elementize = (str) => str.elementize();
+export function elementize(str) { return str.elementize(); }
 
 Object.assign(String.prototype, {
 	attribute(elemName="") {
 		return `${elemName}@${this}`;
 	}
 });
-module.exports.attribute = (attr, elem="") => attr.attribute(elem);
+export function attribute(attr, elem="") { return attr.attribute(elem); }
 
 
 /**
@@ -39,8 +39,8 @@ module.exports.attribute = (attr, elem="") => attr.attribute(elem);
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-module.exports.celsiusToFahrenheit = (celsius) => celsius * 9/5 + 32;
-module.exports.fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
+export function celsiusToFahrenheit(celsius) { return celsius * 9/5 + 32; }
+export function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
 
 
 /**
@@ -49,7 +49,7 @@ module.exports.fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
 	// Examples
 	average(1, 2, 3, 4);	// Result: 2.5
  */
-module.exports.average = (...args) => args.reduce((a, b) => a + b) / args.length;
+export function average(...args) { return args.reduce((a, b) => a + b) / args.length; }
 
 
 /**
@@ -63,7 +63,7 @@ module.exports.average = (...args) => args.reduce((a, b) => a + b) / args.length
 	toFixed(25.198726354, 5);       // 25.19872
 	toFixed(25.198726354, 6);       // 25.198726
  */
-module.exports.toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
+export function toFixed(n, fixed) { return ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed); }
 
 
 /**
@@ -73,7 +73,7 @@ module.exports.toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10
  * @param {Number} max - the upper bound for the random number
  * @returns {Number} a random number betwee min and max
  */
-module.exports.randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+export function randomNumberInRange(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
 
 /**
@@ -81,7 +81,7 @@ module.exports.randomNumberInRange = (min, max) => Math.floor(Math.random() * (m
   *
   * @returns {Boolean} random true/false
  */
-module.exports.randomBoolean = () => Math.random() >= 0.5;
+export function randomBoolean() { return Math.random() >= 0.5; }
 
 
 /**
@@ -89,7 +89,7 @@ module.exports.randomBoolean = () => Math.random() >= 0.5;
  *
  * @returns {String} random 'heads' or 'tails'
  */
-module.exports.coinToss =  () =>  Math.random() >= 0.5 ? 'heads' : 'tails';
+export function coinToss()  { return Math.random() >= 0.5 ? 'heads' : 'tails'; }
 
 
 /**
@@ -99,7 +99,7 @@ module.exports.coinToss =  () =>  Math.random() >= 0.5 ? 'heads' : 'tails';
  * @example console.log(isWeekday(new Date(2021, 0, 11)));  --> Result: true (Monday)
  * @example console.log(isWeekday(new Date(2021, 0, 10)));	--> Result: false (Sunday)
  */
-module.exports.isWeekday = (date) => date.getDay() % 6 !== 0;
+export function isWeekday(date) { return date.getDay() % 6 !== 0; }
 
 
 /** 
@@ -114,7 +114,7 @@ Object.assign(String.prototype, {
 		return this.split('').reverse().join('');
 	}
 });
-module.exports.reverse = (str) => str.reverse();
+export function reverse(str) { return str.reverse(); }
 
 
 /**
@@ -124,7 +124,7 @@ module.exports.reverse = (str) => str.reverse();
 	console.log(isEven(2));	// Result: true
 	console.log(isEven(3));	// Result: false
  */
-module.exports.isEven = (num) => num % 2 === 0;
+export function isEven(num) { return num % 2 === 0; }
  
 
 /**
@@ -134,7 +134,7 @@ module.exports.isEven = (num) => num % 2 === 0;
 	console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0)));   // Result: "17:30:00"
 	console.log(timeFromDate(new Date()));   // Result: will log the current time
  */
-module.exports.timeFromDate = (date) => date.toTimeString().slice(0, 8);
+export function timeFromDate(date) { return date.toTimeString().slice(0, 8); }
 
 
 /**
@@ -143,7 +143,7 @@ module.exports.timeFromDate = (date) => date.toTimeString().slice(0, 8);
  * @param {Date} dateB the second date
  * @returns {Integer} the number od calendar days between the two given dates
  */
-module.exports.daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000));
+export function daysBetweenDates(dateA, dateB) { return Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000)); }
 
 
 /** 
@@ -153,7 +153,7 @@ module.exports.daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.ge
  * @returns {string} A string with ENTITY representations of < and >
  */
 //const HTMLize = str => str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,"&amp;");
-module.exports.HTMLize = function (str) {
+export function HTMLize (str) {
 	return str.replace(/<|>|&|\-/g, function (matched) {
 		switch (matched) {
 			case '<':return '&lt;'; 
@@ -162,7 +162,7 @@ module.exports.HTMLize = function (str) {
 			case '-':return '&#8209;'; 
 		}
 	});
-};
+}
 
 /**
  * calculate the factorial of a number
@@ -170,12 +170,12 @@ module.exports.HTMLize = function (str) {
 	// factorialOfNumber(4); --> 24
 	// factorialOfNumber(8); --> 40320
  */
-module.exports.factorialOfNumber = function (number) {
+export function factorialOfNumber (number) {
   return number < 0 ? (() => {
 	  throw new TypeError('No negative numbers please');
       })() :
     number <= 1 ? 1 : number * factorialOfNumber(number-1);
-};
+}
 
 
 /**
@@ -185,5 +185,5 @@ module.exports.factorialOfNumber = function (number) {
  // sumOfNumbers(5,6,7,8,9,10); --> 45
  // sumOfNumbers(...[1,2,3,4,5,6,7,8,9,10]); --> 50
  */
-module.exports.sumOfNumbers =  (...array) => [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
+export function sumOfNumbers(...array) { return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0); }
 
