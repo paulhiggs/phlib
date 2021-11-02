@@ -152,7 +152,7 @@ export function daysBetweenDates(dateA, dateB) { return Math.floor(Math.abs(date
  * @param {string} str String that should be displayed in HTML
  * @returns {string} A string with ENTITY representations of < and >
  */
-export function HTMLize (str) {
+export function HTMLize(str) {
 	if (!str) return '';
 	if (typeof str != "string") return `${typeof str}`;
 	return str.replace(/<|>|&|\-|"/g, function (matched) {
