@@ -189,3 +189,16 @@ export function factorialOfNumber (number) {
  */
 export function sumOfNumbers(...array) { return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0); }
 
+
+/**
+ * return the type of the argument passed
+ * @param {any} arg the argument whose type we are interested in
+ * @returns {string} the type of the argument 
+ */
+export function dataType(arg) {
+	if (Array.isArray(arg))
+		return 'array';
+	if (!arg)   // ensure null is not identified as an object
+		return undefined;  
+	return typeof arg;
+}
