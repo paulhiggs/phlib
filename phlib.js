@@ -12,21 +12,21 @@ Object.assign(String.prototype, {
 		return `${using}${this}${using}`;
 	}
 });
-export function quote(str) { return str.quote(); }
+export var quote = (str) => str.quote();
 
 Object.assign(String.prototype, {
 	elementize() {
 		return `<${this}>`;
 	}
 });
-export function elementize(str) { return str.elementize(); }
+export var elementize = (str) => str.elementize(); 
 
 Object.assign(String.prototype, {
 	attribute(elemName="") {
 		return `${elemName}@${this}`;
 	}
 });
-export function attribute(attr, elem="") { return attr.attribute(elem); }
+export var attribute = (attr, elem="") => attr.attribute(elem);
 
 
 /**
@@ -39,8 +39,8 @@ export function attribute(attr, elem="") { return attr.attribute(elem); }
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-export function celsiusToFahrenheit(celsius) { return celsius * 9/5 + 32; }
-export function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9; }
+export var celsiusToFahrenheit = (celsius) => celsius * 9/5 + 32;
+export var fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
 
 
 /**
@@ -49,7 +49,7 @@ export function fahrenheitToCelsius(fahrenheit) { return (fahrenheit - 32) * 5/9
 	// Examples
 	average(1, 2, 3, 4);	// Result: 2.5
  */
-export function average(...args) { return args.reduce((a, b) => a + b) / args.length; }
+export var average = (...args) => args.reduce((a, b) => a + b) / args.length;
 
 
 /**
@@ -63,7 +63,7 @@ export function average(...args) { return args.reduce((a, b) => a + b) / args.le
 	toFixed(25.198726354, 5);       // 25.19872
 	toFixed(25.198726354, 6);       // 25.198726
  */
-export function toFixed(n, fixed) { return ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed); }
+export var toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 
 
 /**
@@ -73,7 +73,7 @@ export function toFixed(n, fixed) { return ~~(Math.pow(10, fixed) * n) / Math.po
  * @param {Number} max - the upper bound for the random number
  * @returns {Number} a random number betwee min and max
  */
-export function randomNumberInRange(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+export var randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
 /**
@@ -81,7 +81,7 @@ export function randomNumberInRange(min, max) { return Math.floor(Math.random() 
   *
   * @returns {Boolean} random true/false
  */
-export function randomBoolean() { return Math.random() >= 0.5; }
+export var randomBoolean = () => Math.random() >= 0.5;
 
 
 /**
@@ -89,7 +89,7 @@ export function randomBoolean() { return Math.random() >= 0.5; }
  *
  * @returns {String} random 'heads' or 'tails'
  */
-export function coinToss()  { return Math.random() >= 0.5 ? 'heads' : 'tails'; }
+export var coinToss = ()  => randomBoolean() ? 'heads' : 'tails';
 
 
 /**
@@ -99,7 +99,7 @@ export function coinToss()  { return Math.random() >= 0.5 ? 'heads' : 'tails'; }
  * @example console.log(isWeekday(new Date(2021, 0, 11)));  --> Result: true (Monday)
  * @example console.log(isWeekday(new Date(2021, 0, 10)));	--> Result: false (Sunday)
  */
-export function isWeekday(date) { return date.getDay() % 6 !== 0; }
+export var isWeekday = (date) => date.getDay() % 6 !== 0;
 
 
 /** 
@@ -114,7 +114,7 @@ Object.assign(String.prototype, {
 		return this.split('').reverse().join('');
 	}
 });
-export function reverse(str) { return str.reverse(); }
+export var reverse = (str) => str.reverse();
 
 
 /**
@@ -124,7 +124,7 @@ export function reverse(str) { return str.reverse(); }
 	console.log(isEven(2));	// Result: true
 	console.log(isEven(3));	// Result: false
  */
-export function isEven(num) { return num % 2 === 0; }
+export var isEvem = (num) => num % 2 === 0;
  
 
 /**
@@ -134,7 +134,7 @@ export function isEven(num) { return num % 2 === 0; }
 	console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0)));   // Result: "17:30:00"
 	console.log(timeFromDate(new Date()));   // Result: will log the current time
  */
-export function timeFromDate(date) { return date.toTimeString().slice(0, 8); }
+export var timeFromDate = (date) => date.toTimeString().slice(0, 8);
 
 
 /**
@@ -143,7 +143,7 @@ export function timeFromDate(date) { return date.toTimeString().slice(0, 8); }
  * @param {Date} dateB the second date
  * @returns {Integer} the number od calendar days between the two given dates
  */
-export function daysBetweenDates(dateA, dateB) { return Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000)); }
+export var daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000));
 
 
 /** 
@@ -172,12 +172,10 @@ export function HTMLize(str) {
 	// factorialOfNumber(4); --> 24
 	// factorialOfNumber(8); --> 40320
  */
-export function factorialOfNumber (number) {
-  return number < 0 ? (() => {
+export var factorialOfNumber = (number) => number < 0 ? (() => {
 	  throw new TypeError('No negative numbers please');
       })() :
     number <= 1 ? 1 : number * factorialOfNumber(number-1);
-}
 
 
 /**
@@ -187,7 +185,7 @@ export function factorialOfNumber (number) {
  // sumOfNumbers(5,6,7,8,9,10); --> 45
  // sumOfNumbers(...[1,2,3,4,5,6,7,8,9,10]); --> 50
  */
-export function sumOfNumbers(...array) { return [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0); }
+export var sumOfNumbers = (...array) => [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
 
 
 /**
@@ -195,7 +193,7 @@ export function sumOfNumbers(...array) { return [...array].reduce((accumulator,c
  * @param {any} arg the argument whose type we are interested in
  * @returns {string} the type of the argument 
  */
-export function dataType(arg) {
+export function datatypeIs(arg) {
 	if (Array.isArray(arg))
 		return 'array';
 	if (!arg)   // ensure null is not identified as an object
