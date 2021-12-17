@@ -191,12 +191,14 @@ export var sumOfNumbers = (...array) => [...array].reduce((accumulator,currentVa
 /**
  * return the type of the argument passed
  * @param {any} arg the argument whose type we are interested in
- * @returns {string} the type of the argument 
+ * @param {string} requiredType  the desired tyoe
+ * @returns {boolean or string} the type of the argument or a boolean if the type matches the requiredType
  */
-export function datatypeIs(arg) {
-	if (Array.isArray(arg))
-		return 'array';
+ export function datatypeIs(arg, requiredType=null) {
 	if (!arg)   // ensure null is not identified as an object
-		return undefined;  
-	return typeof arg;
+		return undefined;
+	if (Array.isArray(arg))
+		return requiredType?requiredType=='array':'array';
+	let typ=typeof arg;
+	return requiredType?requiredType==typ:typ;
 }
