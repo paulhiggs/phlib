@@ -124,7 +124,7 @@ export var reverse = (str) => str.reverse();
 	console.log(isEven(2));	// Result: true
 	console.log(isEven(3));	// Result: false
  */
-export var isEvem = (num) => num % 2 === 0;
+export var isEven = (num) => num % 2 === 0;
  
 
 /**
@@ -152,19 +152,7 @@ export var daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTim
  * @param {string} str String that should be displayed in HTML
  * @returns {string} A string with ENTITY representations of < and >
  */
-export function HTMLize(str) {
-	if (!str) return '';
-	if (typeof str != "string") return `${typeof str}`;
-	return str.replace(/<|>|&|\-|"/g, function (matched) {
-		switch (matched) {
-			case '<':return '&lt;'; 
-			case '>':return '&gt;'; 
-			case '&':return '&amp;'; 
-			case '-':return '&#8209;'; 
-			case '"':return '&quot;';
-		}
-	});
-}
+export var HTMLize = (str) => datatypeIs(str, 'string') ? str.replace(/[&<>"'\-]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '-':'&#8209;' }[m])) : str;
 
 /**
  * calculate the factorial of a number
