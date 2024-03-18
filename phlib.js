@@ -1,4 +1,3 @@
-
 /*
  * formatters
  */
@@ -6,28 +5,26 @@
 //String.prototype.elementize=function() {return '<'+this+'>'}
 //String.prototype.attribute=function(elemName="") {return elemName+'@'+this}
 
-
 Object.assign(String.prototype, {
-	quote(using='"') {
+	quote(using = '"') {
 		return `${using}${this}${using}`;
-	}
+	},
 });
 export var quote = (str) => str.quote();
 
 Object.assign(String.prototype, {
 	elementize() {
 		return `<${this}>`;
-	}
+	},
 });
-export var elementize = (str) => str.elementize(); 
+export var elementize = (str) => str.elementize();
 
 Object.assign(String.prototype, {
-	attribute(elemName="") {
+	attribute(elemName = "") {
 		return `${elemName}@${this}`;
-	}
+	},
 });
-export var attribute = (attr, elem="") => attr.attribute(elem);
-
+export var attribute = (attr, elem = "") => attr.attribute(elem);
 
 /**
  * Convert Fahrenheit / Celsius
@@ -39,9 +36,8 @@ export var attribute = (attr, elem="") => attr.attribute(elem);
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-export var celsiusToFahrenheit = (celsius) => celsius * 9/5 + 32;
-export var fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
-
+export var celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
+export var fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9;
 
 /**
  * Get average value of arguments
@@ -50,7 +46,6 @@ export var fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5/9;
 	average(1, 2, 3, 4);	// Result: 2.5
  */
 export var average = (...args) => args.reduce((a, b) => a + b) / args.length;
-
 
 /**
  * Truncate a number to a fixed decimal point
@@ -65,16 +60,14 @@ export var average = (...args) => args.reduce((a, b) => a + b) / args.length;
  */
 export var toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 
-
 /**
  * generate a random number within a designated range
- * 
+ *
  * @param {Number} min - the lower bound for the random number
  * @param {Number} max - the upper bound for the random number
  * @returns {Number} a random number betwee min and max
  */
 export var randomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
 
 /**
   generate a random boolean - 50/50 chance of true/false
@@ -83,14 +76,12 @@ export var randomNumberInRange = (min, max) => Math.floor(Math.random() * (max -
  */
 export var randomBoolean = () => Math.random() >= 0.5;
 
-
 /**
   generate a random coin toss - 50/50 chance of heads/tails
  *
  * @returns {String} random 'heads' or 'tails'
  */
-export var coinToss = ()  => randomBoolean() ? 'heads' : 'tails';
-
+export var coinToss = () => (randomBoolean() ? "heads" : "tails");
 
 /**
  * Check if the provided day is a weekday
@@ -101,7 +92,6 @@ export var coinToss = ()  => randomBoolean() ? 'heads' : 'tails';
  */
 export var isWeekday = (date) => date.getDay() % 6 !== 0;
 
-
 /** 
  * Reverse a String
  
@@ -111,11 +101,10 @@ export var isWeekday = (date) => date.getDay() % 6 !== 0;
  */
 Object.assign(String.prototype, {
 	reverse() {
-		return this.split('').reverse().join('');
-	}
+		return this.split("").reverse().join("");
+	},
 });
 export var reverse = (str) => str.reverse();
-
 
 /**
  * Check if a number is even or odd
@@ -125,7 +114,6 @@ export var reverse = (str) => str.reverse();
 	console.log(isEven(3));	// Result: false
  */
 export var isEven = (num) => num % 2 === 0;
- 
 
 /**
  * Get the time from a date
@@ -136,7 +124,6 @@ export var isEven = (num) => num % 2 === 0;
  */
 export var timeFromDate = (date) => date.toTimeString().slice(0, 8);
 
-
 /**
  * Returns the number of days betweeen two dates
  * @param {Date} dateA - the first date
@@ -145,14 +132,14 @@ export var timeFromDate = (date) => date.toTimeString().slice(0, 8);
  */
 export var daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000));
 
-
-/** 
+/**
  * convert characters in the string to HTML entities
  *
  * @param {string} str String that should be displayed in HTML
  * @returns {string} A string with ENTITY representations of < and >
  */
-export var HTMLize = (str) => datatypeIs(str, 'string') ? str.replace(/[&<>"'\-]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '-':'&#8209;' }[m])) : str;
+export var HTMLize = (str) =>
+	datatypeIs(str, "string") ? str.replace(/[&<>"'\-]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "-": "&#8209;" }[m])) : str;
 
 /**
  * calculate the factorial of a number
@@ -160,11 +147,14 @@ export var HTMLize = (str) => datatypeIs(str, 'string') ? str.replace(/[&<>"'\-]
 	// factorialOfNumber(4); --> 24
 	// factorialOfNumber(8); --> 40320
  */
-export var factorialOfNumber = (number) => number < 0 ? (() => {
-	  throw new TypeError('No negative numbers please');
-      })() :
-    number <= 1 ? 1 : number * factorialOfNumber(number-1);
-
+export var factorialOfNumber = (number) =>
+	number < 0
+		? (() => {
+				throw new TypeError("No negative numbers please");
+		  })()
+		: number <= 1
+		? 1
+		: number * factorialOfNumber(number - 1);
 
 /**
  * sum the numbers in an array
@@ -173,8 +163,7 @@ export var factorialOfNumber = (number) => number < 0 ? (() => {
  // sumOfNumbers(5,6,7,8,9,10); --> 45
  // sumOfNumbers(...[1,2,3,4,5,6,7,8,9,10]); --> 50
  */
-export var sumOfNumbers = (...array) => [...array].reduce((accumulator,currentValue) => accumulator + currentValue,0);
-
+export var sumOfNumbers = (...array) => [...array].reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
 /**
  * return the type of the argument passed
@@ -182,11 +171,11 @@ export var sumOfNumbers = (...array) => [...array].reduce((accumulator,currentVa
  * @param {string} requiredType  the desired tyoe
  * @returns {boolean or string} the type of the argument or a boolean if the type matches the requiredType
  */
- export function datatypeIs(arg, requiredType=null) {
-	if (!arg)   // ensure null is not identified as an object
+export function datatypeIs(arg, requiredType = null) {
+	if (!arg)
+		// ensure null is not identified as an object
 		return undefined;
-	if (Array.isArray(arg))
-		return requiredType?requiredType=='array':'array';
-	let typ=typeof arg;
-	return requiredType?requiredType==typ:typ;
+	if (Array.isArray(arg)) return requiredType ? requiredType == "array" : "array";
+	let typ = typeof arg;
+	return requiredType ? requiredType == typ : typ;
 }
