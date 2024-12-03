@@ -179,3 +179,18 @@ export function datatypeIs(arg, requiredType = null) {
 	let typ = typeof arg;
 	return requiredType ? requiredType == typ : typ;
 }
+
+
+/**
+ * Check if an object is empty
+ * 
+ * @param {*} objectName the object to check for member attributes 
+ * @returns true if the object is empty
+ */
+export const isObjectEmpty = (objectName) => {
+  return (
+    objectName &&
+    Object.keys(objectName).length === 0 &&
+    objectName.constructor === Object
+  );
+};
