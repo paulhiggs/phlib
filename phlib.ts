@@ -1,30 +1,41 @@
 /*
  * formatters
  */
-//String.prototype.quote=function(using='"') {return using+this+using}
-//String.prototype.elementize=function() {return '<'+this+'>'}
-//String.prototype.attribute=function(elemName="") {return elemName+'@'+this}
-
-Object.assign(String.prototype, {
-	quote(using : String = '"') : String {
+declare global {
+	interface String {
+		quote(using? : string) : string;
+	}
+}
+if (!String.prototype.quote) {
+	String.prototype.quote = function (using : string = '"') : string {
 		return `${using}${this}${using}`;
-	},
-});
-export let quote = (str : String) => `"${str}"`;
+	};
+}
+export let quote = (str : string) : string => str.quote();
 
-Object.assign(String.prototype, {
-	elementize() : String {
+declare global {
+	interface String {
+		elementize() : string;
+	}
+}
+if (!String.prototype.elementize) {
+	String.prototype.elementize = function () : string {
 		return `<${this}>`;
-	},
-});
-export let elementize = (str : String) => `<${str}>`;
+	};
+}
+export let elementize = (str : string) : string => str.elementize();
 
-Object.assign(String.prototype, {
-	attribute(elemName : String = "") {
-		return `${elemName}@${this}`;
-	},
-});
-export let attribute = (attr : String, elem : String = "") => `${elem}@${attr}`;
+declare global {
+	interface String {
+		attribute(elemName? : string) : string;
+	}
+}
+if (!String.prototype.attribute) {
+	String.prototype.attribute = function (elementName : string = '') : string {
+		return `${elementName}@${this}`;
+	};
+}
+export let attribute = (attributeName : string, elementName : string = "") : string => attributeName.attribute(elementName);
 
 /**
  * Convert Fahrenheit / Celsius
@@ -36,8 +47,8 @@ export let attribute = (attr : String, elem : String = "") => `${elem}@${attr}`;
 	fahrenheitToCelsius(59);    // 15
 	fahrenheitToCelsius(32);    // 0
  */
-export let celsiusToFahrenheit = (celsius : number) => (celsius * 9) / 5 + 32;
-export let fahrenheitToCelsius = (fahrenheit : number) => ((fahrenheit - 32) * 5) / 9;
+export let celsiusToFahrenheit = (celsius : number) : number => (celsius * 9) / 5 + 32;
+export let fahrenheitToCelsius = (fahrenheit : number) : number => ((fahrenheit - 32) * 5) / 9;
 
 /**
  * Get average value of arguments
@@ -86,11 +97,11 @@ export let coinToss = () : string => (randomBoolean() ? "heads" : "tails");
 /**
  * Check if the provided day is a weekday
  * @param {Date} date the date to check
- * @returns {Boolean} true if the date is Monday-Friday else false
+ * @returns {boolean} true if the date is Monday-Friday else false
  * @example console.log(isWeekday(new Date(2021, 0, 11)));  --> Result: true (Monday)
  * @example console.log(isWeekday(new Date(2021, 0, 10)));	--> Result: false (Sunday)
  */
-export var isWeekday = (date) => date.getDay() % 6 !== 0;
+export var isWeekday = (date : Date) : boolean=> date.getDay() % 6 !== 0;
 
 /** 
  * Reverse a String
@@ -99,12 +110,17 @@ export var isWeekday = (date) => date.getDay() % 6 !== 0;
 	// Example
  * @example	reverse('hello world');  --> Result: 'dlrow olleh'
  */
-Object.assign(String.prototype, {
-	reverse() {
+declare global {
+	interface String {
+		reverse() : string;
+	}
+}
+if (!String.prototype.reverse) {
+	String.prototype.reverse = function () : string {
 		return this.split("").reverse().join("");
-	},
-});
-export let reverse = (str : string) : string => str.split("").reverse().join("");
+	};
+}
+export let reverse = (str : string) : string => str.reverse();
 
 /**
  * Check if a number is even or odd
@@ -122,13 +138,13 @@ export let isEven = (num : number) : boolean => num % 2 === 0;
 	console.log(timeFromDate(new Date(2021, 0, 10, 17, 30, 0)));   // Result: "17:30:00"
 	console.log(timeFromDate(new Date()));   // Result: will log the current time
  */
-export let timeFromDate = (date :Date) : string => date.toTimeString().slice(0, 8);
+export let timeFromDate = (date : Date) : string => date.toTimeString().slice(0, 8);
 
 /**
  * Returns the number of days betweeen two dates
  * @param {Date} dateA - the first date
  * @param {Date} dateB the second date
- * @returns {Integer} the number od calendar days between the two given dates
+ * @returns {number} the number od calendar days between the two given dates
  */
 export let daysBetweenDates = (dateA : Date, dateB : Date) : number => Math.floor(Math.abs(dateA.getTime() - dateB.getTime()) / (3600 * 24 * 1000));
 
@@ -138,7 +154,7 @@ export let daysBetweenDates = (dateA : Date, dateB : Date) : number => Math.floo
  * @param {string} str String that should be displayed in HTML
  * @returns {string} A string with ENTITY representations of < and >
  */
-export let HTMLize = (str : string) : string =>
+export let HTMLize = (str : string | any) : string =>
 	datatypeIs(str, "string") ? str.replace(/[&<>"'\-]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "-": "&#8209;" }[m])) : str;
 
 /**
@@ -170,13 +186,13 @@ export let sumOfNumbers = (...array : Array<number>) : number => [...array].redu
  * @param {string} requiredType  the desired tyoe
  * @returns {boolean or string} the type of the argument or a boolean if the type matches the requiredType
  */
-export function datatypeIs(arg, requiredType : string = "") : undefined | boolean | string {
+export function datatypeIs(arg : any = null, requiredType : string = "") : undefined | boolean | string {
 	if (!arg)
 		// ensure null is not identified as an object
 		return undefined;
 	if (Array.isArray(arg)) return requiredType ? requiredType === "array" : "array";
 	let typ = typeof arg;
-	return requiredType != "" ? requiredType === typ : typ;
+	return requiredType !== "" ? requiredType === typ : typ;
 }
 
 /**
@@ -185,7 +201,7 @@ export function datatypeIs(arg, requiredType : string = "") : undefined | boolea
  * @param {*} objectName the object to check for member attributes 
  * @returns true if the object is empty
  */
-export const isObjectEmpty = (objectName) : boolean => {
+export const isObjectEmpty = (objectName : any) : boolean => {
   return (
     objectName &&
     Object.keys(objectName).length === 0 &&
