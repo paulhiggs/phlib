@@ -135,11 +135,11 @@ export var daysBetweenDates = (dateA, dateB) => Math.floor(Math.abs(dateA.getTim
 /**
  * convert characters in the string to HTML entities
  *
- * @param {string} str String that should be displayed in HTML
- * @returns {string} A string with ENTITY representations of < and >
+ * @param {String} str String that should be displayed in HTML
+ * @returns {String} A string with ENTITY representations of < and >
  */
 export var HTMLize = (str) =>
-	datatypeIs(str, "string") ? str.replace(/[&<>"'\-]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "-": "&#8209;" }[m])) : str;
+	datatypeIs(str, "string") ? str.replace(/[&<>"'\-]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "-": "&#8209;" })[m]) : str;
 
 /**
  * calculate the factorial of a number
@@ -151,10 +151,10 @@ export var factorialOfNumber = (number) =>
 	number < 0
 		? (() => {
 				throw new TypeError("No negative numbers please");
-		  })()
+			})()
 		: number <= 1
-		? 1
-		: number * factorialOfNumber(number - 1);
+			? 1
+			: number * factorialOfNumber(number - 1);
 
 /**
  * sum the numbers in an array
@@ -167,7 +167,7 @@ export var sumOfNumbers = (...array) => [...array].reduce((accumulator, currentV
 /**
  * return the type of the argument passed
  * @param {any} arg the argument whose type we are interested in
- * @param {string} requiredType  the desired tyoe
+ * @param {String} requiredType  the desired tyoe
  * @returns {boolean or string} the type of the argument or a boolean if the type matches the requiredType
  */
 export function datatypeIs(arg, requiredType = null) {
@@ -181,14 +181,10 @@ export function datatypeIs(arg, requiredType = null) {
 
 /**
  * Check if an object is empty
- * 
- * @param {*} objectName the object to check for member attributes 
+ *
+ * @param {*} objectName the object to check for member attributes
  * @returns true if the object is empty
  */
 export const isObjectEmpty = (objectName) => {
-  return (
-    objectName &&
-    Object.keys(objectName).length === 0 &&
-    objectName.constructor === Object
-  );
+	return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object;
 };
